@@ -6,16 +6,58 @@
 <h1>Fill out the form to become a member.</h1>
 
 <form method="post" action="/home/userAdded">
+    <fieldset>
+        <h3>Login Information</h3>
+        Email: <input type="text" name="email" 
+        pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,}$" /><br />
 
-    First Name: <input type="text" name="firstName" /><br />
-    Last Name: <input type="text" name="lastName"/><br />
-    Email: <input type="text" name="email"/><br />
-    Phone Number: <input type="text" name="phoneNumber" /><br />
-    Password: <input type="text" name="password"/><br />
+        Password: <input type="text" name="password" 
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, 
+        and at least 8 or more characters"/>
+        Confirm Password: <input type="text" name="password" /><br />
 
-    <input type="submit" />
+        <input type="checkbox" id="remember" name="option" value="remember">
+        <label for="Remember Me">Remember Me</label><br>
+    </fieldset>
+    <fieldset>
+        <h3>Personal Information</h3>
+        <label for="state">State:</label>
+        <select name="state" id="state">
+            <option value="Default"></option>
+            <option value="MI">Michigan</option>
+            <option value="NV">Nevada</option>
+            <option value="OH">Ohio</option>
+            <option value="FL">Flordia</option>
+        </select><br />
+        First Name: <input type="text" name="firstName" />
+        Last Name: <input type="text" name="lastName" /><br />
+        Birthday: <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" name="birthday"><br />
+    </fieldset>
+    <fieldset>
+        <h3>Address</h3>
+        <select name="address" id="address">
+            <option value="HO">Home</option>
+            <option value="BU">Business</option>
+            <option value="APT">Apartment</option>
+        </select><br />
+        Address Line 1: <input type="text" name="address1" />
+        Address Line 2: <input type="text" name="address2" /><br />
+        Zip/Postal Code: <input type="text" name="zip" />
+        City: <input type="text" name="city" />
+        State: <input type="text" name="state" /><br />
+    </fieldset>
+    <fieldset>
+        <h3>Contact</h3>
+        Phone Number: <input type="tel" id="phone" name="phone"
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+        required /><br />
+        <small>Format: 123-456-7890</small>
+    </fieldset>
+
+        <input type="submit" />
 
 
-
+   
 </form>
 

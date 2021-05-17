@@ -33,6 +33,11 @@ namespace CoffeeShop.Controllers
             return View();
         }
 
+        public IActionResult User()
+        {
+            return View("User");
+        }
+
         [HttpPost]
         public IActionResult userAdded(string firstName)
         {
