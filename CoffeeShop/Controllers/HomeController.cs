@@ -6,11 +6,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper.Contrib.Extensions;
+using MySql.Data.MySqlClient;
 
 namespace CoffeeShop.Controllers
 {
     public class HomeController : Controller
     {
+        static MySqlConnection db = new MySqlConnection("Server=localhost;Database=imaginecoffee;Uid=root;Password=abc123");
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -20,7 +23,7 @@ namespace CoffeeShop.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(Product.AllProducts);
         }
 
         public IActionResult Privacy()
@@ -37,6 +40,10 @@ namespace CoffeeShop.Controllers
         {
             return View("User");
         }
+        public IActionResult locations()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult userAdded(string firstName)
@@ -44,6 +51,18 @@ namespace CoffeeShop.Controllers
             ViewData["FirstName"] = firstName;
             return View();
         }
+        public IActionResult ProductForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddProduct(Product newProduct)
+        {
+            Product.AllProducts.Add(newProduct);
+            return RedirectToAction("Index");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
